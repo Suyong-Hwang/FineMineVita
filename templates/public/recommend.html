@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} 기능 선택 페이지 {% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/public_recommend.css') }}">
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block content %}
+<div class="recomand-extra"></div>
+<form method="POST" action="{{ url_for('public_recommend') }}">
+    <h3>관심있는 건강기능식품의 건강 기능을 선택해 주세요</h3>
+    <div class="functionality-options">
+        <label><input type="checkbox" name="functions" value="항산화"> 항산화</label>
+        <label><input type="checkbox" name="functions" value="소화건강"> 소화건강</label>
+        <label><input type="checkbox" name="functions" value="면역기능"> 면역기능</label>
+        <label><input type="checkbox" name="functions" value="기타"> 기타</label>
+        <!-- 필요한 항목 더 추가 가능 -->
+    </div>
+    <button type="submit">제품 추천 받기</button>
+</form>
+<div class="recomand-extra"></div>
+{% endblock %}

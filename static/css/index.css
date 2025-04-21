@@ -1,0 +1,472 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("../fonts/JalnanGothicTTF.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("../fonts/NOTOSANSKR-VF.TTF") format("truetype");
+  font-display: swap;
+}
+
+/* 공통 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.header {
+  font-family: "CustomFont", sans-serif;
+  font-size: 2rem;
+  color: green;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.hero-text {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* 내비게이션 바 */
+.navigation-bar {
+  font-family: "CustomFont", sans-serif;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  justify-content: center;
+}
+
+.navigation-bar img {
+  width: 100px;
+  height: 500px;
+  margin-left: 20px;
+}
+
+.logo, .login, .signup  {
+  text-decoration: none;
+  color: #333;
+  margin-left: 25px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.navigation-bar a:hover {
+  color: #009578;
+  border-bottom: 2px solid #009578;
+}
+
+/* 아이콘 색상 */
+.user-icon {
+  color: #1E90FF;
+}
+
+.signup-icon {
+  color: #28a745;
+}
+
+.menu-icon {
+  color: #333333;
+}
+
+.menu-toggle {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navigation-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navigation-bar a {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 10;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-bar img {
+    max-width: 90px;
+  }
+
+  .navigation-bar a {
+    font-size: 0.85rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 450px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 50px;
+  flex-direction: column;
+  text-align:center;
+  gap: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* 햄버거 버튼 클릭 시 표시되는 상태 */
+.nav-menu.show {
+  display: flex;
+}
+
+/* 메뉴 내부 항목 스타일 */
+.nav-menu a {
+  padding : 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* 슬라이더 */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 750px;
+  margin: 50px auto 70px auto;
+  padding: 0 80px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px var(--widget-shadow);
+}
+
+.swiper-wrapper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+/* 슬라이더 네비게이션 */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  color: var(--arrow-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 0;
+  transition: color 0.3s ease;
+  box-shadow: none;
+  font-size: 150px;
+  font-family: "NotoSansKR", sans-serif;
+  font-weight: normal;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  line-height: 0;
+  margin-top: 0;
+}
+
+.swiper-button-next {
+  right: -40px;
+  left: auto;
+}
+
+.swiper-button-prev {
+  left: -40px;
+  right: auto;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: transparent;
+  color: var(--arrow-hover-color);
+  transform: translateY(-50%) scale(1.1);
+  opacity: 0.7;
+  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: none;
+}
+
+.swiper-pagination {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+}
+
+/* 본문 영역 */
+.content {
+  min-height: 75vh;
+}
+
+/* 푸터 */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #f1f1f1;
+  padding: 10px 0;
+  text-align: center;
+  font-family: "CustomFont", sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.flash-messages-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 메시지 스타일만 담당 */
+.flash-message {
+  text-align : center;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 20%;
+  box-shadow: 0 4px 6px rgba(81, 139, 14, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  margin: 20px auto;
+  position: relative;
+}
+
+.flash-message.show {
+  opacity: 1;
+}
+
+.flash-message.success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.flash-message.error {
+  background-color: #f44336;
+  color: white;
+}
+
+.flash-message.info {
+  background-color: #2196F3;
+  color: white;
+}
+
+.flash-message.warning {
+  background-color: #ff9800;
+  color: white;
+}
+
+/* 로그인 알림 모달 스타일 */
+/* 전체 모달 배경 */
+.login-alert {
+  display: none; /* 처음엔 숨김 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 알림창 본체 */
+.alert-content {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 텍스트 스타일 */
+.alert-content h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #333;
+}
+
+.alert-content p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 버튼 스타일 */
+
+.alert-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* 버튼 간격을 줄임 */
+}
+
+/* 공통 버튼 스타일 */
+.alert-buttons .btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+/* 로그인하기 버튼 */
+.btn-primary {
+  background-color: #3A7D44;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #2f6536;
+}
+
+/* 취소 버튼 - 빨간색 */
+.btn-secondary {
+  background-color: gray;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a5a5a;;
+  color: #f0f0f0; 
+}
+
+.btn-danger{
+  background-color: #f3d1d1;
+  color: #b02a2a;
+}
+
+.btn-danger:hover {
+  background-color: #e5baba;
+}
+
+/* 등장 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

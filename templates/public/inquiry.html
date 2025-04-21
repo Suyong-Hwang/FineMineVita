@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}문의 페이지{% endblock %}
+{% block header %}
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inquiry.css') }}">
+{% endblock %}
+{% block content %}
+<div class="inquiry-extra"></div>
+<div class="inquiries-container">
+    <h2>문의하기</h2>
+    <form method="POST" action="{{ url_for('public_inquiry') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+            <div class="inquiry-title">
+            <label for="inquiry_reason">문의 사항</label>
+            </div>
+            <select class="form-control" id="inquiry_reason" name="inquiry_reason" required>
+                <option value="" disabled selected>문의 사항을 선택해주세요</option>
+                <option value="서비스 문의">서비스 문의</option>
+                <option value="회원가입/로그인 관련">회원가입/로그인 관련</option>
+                <option value="건강기능식품 관련">건강기능식품 관련</option>
+                <option value="개인정보 관련">개인정보 관련</option>
+                <option value="기타">기타</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="reason-detail">문의 내용</label>
+            <textarea class="form-control" id="reason-detail" name="reason-detail" rows="5" placeholder="문의 내용을 작성해주세요" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">첨부파일</label>
+            <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+            <small class="text-muted">* 이미지 파일만 업로드 가능합니다.</small>
+        </div>
+        <div class="btn-group">
+        <button type="submit" class="btn-submit">문의 제출하기</button>
+        </div>
+    </form>
+</div>
+<div class="inquiry-extra"></div>
+{% endblock %}
