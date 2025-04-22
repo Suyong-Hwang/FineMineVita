@@ -31,7 +31,7 @@ def inject_full_date():
 # manager.create_approved_functional_ingredients()
 
 # #건강기능식품 기능성 원료인정현황 오픈API데이터 url
-# api_url = "http://openapi.foodsafetykorea.go.kr/api/c73eb08b363a44b88a78/I-0040/json/1/691"
+# api_url = "http://openapi.foodsafetykorea.go.kr/api/API키/I-0040/json/1/691"
 
 # #건강기능식품 기능성 원료인정현황 오픈API 데이터 저장
 # manager.approved_functional_ingredients(api_url)
@@ -39,7 +39,7 @@ def inject_full_date():
 # 건강기능식품 품목 제조 신고사항 현황 테이블 생성
 # manager.create_supplement_products_table()
 # # 건강기능식품 품목제조 신고사항 현황 오픈API데이터 url
-# api_url = "http://openapi.foodsafetykorea.go.kr/api/c73eb08b363a44b88a78/I0030/json"
+# api_url = "http://openapi.foodsafetykorea.go.kr/api/API키/I0030/json"
 
 # manager.save_supplement_products(api_url, start=1, end=40801, batch_size=1000)
 
