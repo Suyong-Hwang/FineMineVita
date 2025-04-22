@@ -144,16 +144,18 @@ class DBManager:
                 self.connection.commit()
                 print("문의 저장 완료")
         except mysql.connector.Error as error:
+            self.connection.rollback()
             print(f"문의 저장 실패: {error}")
         finally:
             self.disconnect()
 
     ## 비회원 회원가입
+
     # 아이디 중복 확인
-    def duplicate_users(self, user_id):
+    def duplicate_userid(self, user_id):
         try:
             self.connect()
-            sql = 'SELECT * FROM users WHERE user_id = %s'
+            sql = 'SELECT 1 FROM users WHERE user_id = %s'
             self.cursor.execute(sql, (user_id,))
             result = self.cursor.fetchone()
             if result : 
@@ -162,7 +164,7 @@ class DBManager:
                 return False
         except mysql.connector.Error as error:
             self.connection.rollback()
-            print(f"회원가입 실패: {error}")
+            print(f"중복 아이디 확인 실패: {error}")
             return False
         finally:
             self.disconnect()
@@ -181,3 +183,22 @@ class DBManager:
             return False
         finally:
             self.disconnect()
+
+    # 회원가입 후 데이터 저장
+    def register_users(self,user_id, user_name, password, email, address, birthday, reg_number, gender):
+        try:
+            self.connect()
+            sql = """
+                INSERT INTO users (user_id, user_name, password, email, address, birthday, reg_number, gender)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (user_id, user_name, password, email, address, birthday, reg_number, gender)
+            self.cursor.execute(sql, values)
+            self.connection.commit()
+            print("회원 정보 저장 완료")
+            return True
+        except mysql.connector.Error as error:
+            self.connection.rollback()
+            print(f"회원가입 실패: {error}")
+            return False
+        

@@ -153,3 +153,47 @@ function openAddressSearch() {
     }).open();
 }
 
+function checkUserId() {
+    const userId = document.getElementById("user_id").value;
+    isUserIdChecked = false; // 항상 기본값은 false
+
+    if (!userId) {
+        alert("아이디를 입력해주세요.");
+        return;
+    }
+
+    fetch("/check_userid", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user_id: userId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'error') {
+            alert(data.message); // 아이디 미입력 등 오류 메시지
+            isUserIdChecked = false;
+        } else if (data.status === 'duplicate') {
+            alert(data.message); // 중복된 아이디
+            isUserIdChecked = false;
+        } else if (data.status === 'ok') {
+            alert(data.message); // 사용 가능한 아이디
+            isUserIdChecked = true;
+        }
+    })
+    .catch(error => {
+        console.error("중복 확인 오류:", error);
+        alert("요청 중 오류가 발생했습니다.");
+        isUserIdChecked = false;
+    });
+}
+
+function validateForm() {
+    if (!isUserIdChecked) {
+        alert("아이디 중복 확인을 해주세요.");
+        return false;  // 전송 막기
+    }
+
+    return true;  // 통과 시 폼 전송 허용
+}

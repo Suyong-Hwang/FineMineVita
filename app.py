@@ -101,11 +101,6 @@ def public_register():
         birthday = request.form['birthday']
         reg_number = request.form['total_regnumber']
         
-        #회원과 아이디가 중복되는지 확인
-        if manager.duplicate_users(user_id):
-            flash('이미 존재하는 아이디 입니다.', 'error')
-            return render_template('public/register.html')
-        
         #회원 이메일과 중복여부
         if manager.duplicate_email(email):
             flash('이미 등록된 이메일 입니다.', 'error')
@@ -119,6 +114,19 @@ def public_register():
         flash('회원가입에 실패했습니다.', 'error')
         return redirect(url_for('register'))
     return render_template('public/register.html')
+
+@app.route('/check_userid', methods=['POST'])
+def check_userid():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': '아이디가 입력되지 않았습니다.'}), 400
+
+    if manager.duplicate_userid(user_id):
+        return jsonify({'status': 'duplicate', 'message': '이미 사용 중인 아이디입니다.'})
+    else:
+        return jsonify({'status': 'ok', 'message': '사용 가능한 아이디입니다.'})
+
 
 # 비회원 회원가입 - 약관 페이지
 @app.route('/public/terms_of_service')
