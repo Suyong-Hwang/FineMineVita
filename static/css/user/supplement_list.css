@@ -1,0 +1,149 @@
+
+.supplement_list_extra{
+    height: 100%;
+}
+
+body {
+    background-color: #f9f7f3;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.supplement_list_extra {
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin: 20px 0;
+    font-size: 28px;
+    color: #333;
+}
+
+table {
+    width: 4000px;
+    border-collapse: collapse; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #f5e9dc;
+    color: #5e4b3c;
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #e8e4df;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: #fef9f3;
+}
+
+td {
+    color: #555;
+    line-height: 1.6;
+}
+
+.table-container {
+    margin: 0 50px 50px;
+    overflow-x: auto;
+}
+
+.table-scroll-wrapper {
+    max-height: 800px; /* 필요에 따라 조절 가능 */
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+/* 기존 table 스타일 유지 */
+.supplement-table {
+    width: 4000px;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* sticky 헤더 설정 */
+.supplement-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f5e9dc;
+    color: #5e4b3c;
+    z-index: 10;
+}
+
+/* 공통 셀 스타일 */
+.supplement-table th,
+.supplement-table td {
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #e8e4df;
+    border-right: 1px solid #e8e4df; /* 오른쪽 경계선 추가 */
+}
+
+/* hover 효과 */
+.supplement-table tbody tr:hover {
+    background-color: #fef9f3;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-container form {
+    background-color: #f8f4ef; /* 베이지 계열 배경 */
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-container select,
+.search-container input[type="text"] {
+    padding: 8px 14px;
+    border: 1px solid #d6ccc2;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #fffdf8;
+    color: #333;
+    font-family: 'Pretendard', sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+.search-container select:focus,
+.search-container input[type="text"]:focus {
+    border-color: #b89f89;
+    outline: none;
+}
+
+.search-container button {
+    padding: 8px 18px;
+    background-color: #b89f89;  /* 고급스러운 베이지 브라운 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.search-container button:hover {
+    background-color: #a88b76;
+}

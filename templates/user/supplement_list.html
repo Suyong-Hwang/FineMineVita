@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}건강기능식품 목록{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user/dashboard.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user/supplement_list.css') }}">
+{% endblock %}
+{% block header %}
+<h2 style="text-align:center">건강기능식품 목록 및 정보</h2>
+{% endblock %}
+{% block content %}
+<div class="supplement_list_extra"></div>
+
+<div class="search-container" style="text-align: center; margin-bottom: 20px;">
+    <form action="{{ url_for('user_supplement_list') }}" method="get">
+        <select name="search_type">
+            <option value="product_name">제품명</option>
+            <option value="manufacturer">제조사</option>
+        </select>
+        <input type="text" name="search_query" placeholder="검색어를 입력하세요" />
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+<div class="table-container">
+    <div class="table-scroll-wrapper">
+        <table class="supplement-table">
+            <thead>
+                <tr>
+                    <th style="width:200px;">제품명</th>
+                    <th style="width:200px;">제조사</th>
+                    <th style="width:600px;">주된 기능성</th>
+                    <th style="width:200px;">섭취 방법</th>
+                    <th style="width:500px;">섭취 시 주의 사항</th>
+                    <th style="width:200px;">품목 유형</th>
+                    <th style="width:250px;">기능성 원재료</th>
+                    <th style="width:250px;">기타 원재료</th>
+                    <th style="width:250px;">제품 형태</th>
+                    <th style="width:150px;">최종 수정일</th>
+                    <th style="width:70px;">생산여부</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for supplement in supplements %}
+                <tr>
+                    <td>{{ supplement.PRDLST_NM }}</td>
+                    <td>{{ supplement.BSSH_NM }}</td>
+                    <td>{{ supplement.PRIMARY_FNCLTY }}</td>
+                    <td>{{ supplement.NTK_MTHD }}</td>
+                    <td>{{ supplement.IFTKN_ATNT_MATR_CN }}</td>
+                    <td>{{ supplement.RAWMTRL_NM }}</td>
+                    <td>{{ supplement.INDIV_RAWMTRL_NM }}</td>
+                    <td>{{ supplement.ETC_RAWMTRL_NM }}</td>
+                    <td>{{ supplement.DISPOS }}</td>
+                    <td>{{ supplement.last_updated }}</td>
+                    <td>
+                        {% if supplement.PRODUCTION == '아니오' %}
+                            <span style="color: green;">생산중</span>
+                        {% else %}
+                            <span style="color: red;">생산중지</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div style="text-align:center; margin-top: 20px;">
+            {% if total_pages > 1 %}
+                <div class="pagination">
+                    {% if page > 1 %}
+                        <a href="{{ url_for('user_supplement_list', page=1) }}">처음</a>
+                        <a href="{{ url_for('user_supplement_list', page=page-1) }}">이전</a>
+                    {% endif %}
+                
+                    {% if start_page > 1 %}
+                        <a href="{{ url_for('user_supplement_list', page=1) }}">1</a>
+                        {% if start_page > 2 %}
+                            <span>...</span>
+                        {% endif %}
+                    {% endif %}
+                
+                    {% for p in range(start_page, end_page + 1) %}
+                        {% if p == page %}
+                            <strong>[{{ p }}]</strong>
+                        {% else %}
+                            <a href="{{ url_for('user_supplement_list', page=p) }}">{{ p }}</a>
+                        {% endif %}
+                    {% endfor %}
+                
+                    {% if end_page < total_pages %}
+                        {% if end_page < total_pages - 1 %}
+                            <span>...</span>
+                        {% endif %}
+                        <a href="{{ url_for('user_supplement_list', page=total_pages) }}">{{ total_pages }}</a>
+                    {% endif %}
+                
+                    {% if page < total_pages %}
+                        <a href="{{ url_for('user_supplement_list', page=page+1) }}">다음</a>
+                        <a href="{{ url_for('user_supplement_list', page=total_pages) }}">마지막</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

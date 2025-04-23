@@ -11,7 +11,7 @@ function updateRegNumber() {
 
 // 입력된 주민등록번호 뒷자리 첫번째 숫자를 통해 성별 추출
 function getGenderFromRegNumber(regNumberSuffix) {
-    var genderDigit = parseInt(regNumberSuffix.charAt(0), 10);
+    var genderDigit = parseInt(regNumberSuffix, 10);
     return genderDigit % 2 === 0 ? 'female' : 'male';
 }
 
@@ -19,11 +19,17 @@ function handleSubmit(event) {
     // 주민등록번호와 성별 데이터 설정
     var regNumberPrefix = document.getElementById("regNumberInput").value;
     var regNumberSuffix = document.getElementById("regNumberInput2").value;
-    var totalRegNumber = regNumberPrefix + "-" + regNumberSuffix;
+    var totalRegNumber = regNumberPrefix + "-" + regNumberSuffix +  "******";
     var gender = getGenderFromRegNumber(regNumberSuffix);
 
     document.getElementById("genderField").value = gender;
     document.getElementById("totalRegNumberField").value = totalRegNumber;
+
+    // 주소 필드 설정
+    var address = document.getElementById("address").value;
+    var addressDetail = document.getElementById("addressDetail").value;
+    var fullAddress = address + " " + addressDetail;
+    document.getElementById("addressField").value = fullAddress;
 }
 
 // input에 입력시 실시간으로 유효성 검사
@@ -154,7 +160,7 @@ function openAddressSearch() {
 }
 
 function checkUserId() {
-    const userId = document.getElementById("user_id").value;
+    const userId = document.getElementById("userid").value;
     isUserIdChecked = false; // 항상 기본값은 false
 
     if (!userId) {

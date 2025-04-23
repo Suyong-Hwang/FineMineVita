@@ -10,14 +10,15 @@
 </head>
 <body>
     {% block navigation %}
+    {% if not session.get('user_id') %}
     <nav class="navigation-bar">
-        <a class="logo" href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Fit Mine Vita Logo" style="width: 100px; height: auto;">
+        <a class="logo" href="{{ url_for('index') }}" title="홈">
+            <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Fit Mine Vita Logo" style="width: 100px; height: auto; padding-right: 10px;">
         </a>
-        <a class="login" href="{{ url_for('public_login') }}">
+        <a class="login" href="{{ url_for('public_login') }}" title="로그인">
             <i class="fas fa-user fa-3x user-icon"></i>
         </a>
-        <a class="signup" href="#" class="signup-link">
+        <a class="signup" href="{{ url_for('public_register')}}" class="signup-link" title="회원가입">
             <i class="fas fa-user-plus fa-3x signup-icon"></i> 
           </a>
         <div class="menu-toggle" id="menu-toggle">
@@ -31,6 +32,33 @@
             <a href="{{ url_for('public_register')}}">회원가입</a>
         </div>
     </nav>
+    {% else %}
+    <nav class="navigation-bar">
+        <a class="logo" href="{{ url_for('user_dashboard') }}" title="홈">
+            <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Fit Mine Vita Logo" style="width: 100px; height: auto; padding-right: 10px;">
+        </a>
+        <p class="greeting-message">{{ session['user_name'] }}님, 오늘도 건강하고 행복한 하루 되세요</p>
+        <a class="edit_info" href="#" title="정보 수정">
+            <i class="fas fa-user-edit fa-3x"></i>
+        </a>
+
+        <a class="inquiry" href="#" title="문의하기">
+            <i class="fas fa-envelope fa-3x"></i>
+        </a>
+        <a class="logout" href="{{ url_for('logout') }}" title="로그아웃">
+            <i class="fas fa-sign-out-alt fa-3x"></i>
+        </a>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars fa-3x menu-icon"></i>  <!-- 햄버거 아이콘 -->
+        </div>
+        <div class="user-nav-menu" id="user-nav-menu">
+            <a href="#">제품 추천</a>
+            <a href="#">생활습관 체크</a>
+            <a href="#">문의</a>
+            <a href="#">회원탈퇴</a>
+        </div>
+    </nav>
+    {% endif %}
     {% endblock %}
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -89,9 +117,7 @@
             <div class="swiper-button-next"></div>
     </div>
     {% endblock %}    
-    <!-- 플래시 메시지 컨테이너 추가 -->
-    <div id="flash-messages-container" class="flash-messages-container" aria-live="polite"></div>
-
+    
     <footer class="footer">
         <P>{{ full_date }}</P>
         <p>© 2023 Fit Mine Vita. All rights reserved.</p>

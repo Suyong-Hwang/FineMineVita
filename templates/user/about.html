@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}소개 페이지{% endblock %}
 {% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user/dashboard.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/public_about.css') }}">
-{% endblock %}
-{% block head %}
 {% endblock %}
 {% block header %}
 {% endblock %}
@@ -52,4 +51,24 @@
 
     </div>
 </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    // 햄버거버튼=>추천버튼 눌릴시
+    document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById("menu-toggle");
+            const navMenu = document.getElementById("user-nav-menu");
+    
+            toggleButton.addEventListener("click", function () {
+                navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
+            });
+    
+            // 바깥 클릭 시 메뉴 닫기
+            document.addEventListener("click", function (e) {
+                if (!toggleButton.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 {% endblock %}

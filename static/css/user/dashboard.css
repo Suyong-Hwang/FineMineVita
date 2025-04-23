@@ -1,0 +1,118 @@
+.fa-sign-out-alt {
+    color: #666;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.fa-sign-out-alt:hover {
+    color: #d9534f; /* 부드러운 빨강 느낌 – 로그아웃 느낌 */
+    cursor: pointer;
+}
+
+.fa-envelope {
+    color: #5DADE2;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.fa-envelope:hover {
+    color: #3498DB;
+    cursor: pointer;
+}
+
+.fa-user-edit {
+    color: #58D68D;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.fa-user-edit:hover {
+    color: #2ECC71;
+    cursor: pointer;
+}
+
+.greeting-message {
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0 20px;
+    color: #1C5D3B; /* 부드러운 진녹색, 로고 컬러와 조화 */
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.3px;
+}
+
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.user-nav-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    margin-left : 1350px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 50px;
+    flex-direction: column;
+    text-align:center;
+    gap: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.user-nav-menu a {
+    padding : 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: background-color 0.3s;
+}
+
+.user-nav-menu a:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.user-nav-menu.show {
+    display: flex;
+  }
+
+.menu-toggle {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.header h4{
+    font-weight: 700;
+    color: #1C5D3B;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.3px;
+
+}
+
+.header p{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.3px;
+}
